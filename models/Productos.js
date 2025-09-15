@@ -8,6 +8,6 @@ const ProductosSchema = new mongoose.Schema({
   stock: { type: Number, required: true },
 });
 
-const Productos = mongoose.model("Productos", ProductosSchema);
+const Productos = mongoose.model("Productos", ProductosSchema, "productos");
 
 export default Productos;

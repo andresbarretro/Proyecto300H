@@ -1,6 +1,6 @@
 import express from "express";
 import Productos from "../models/Productos.js";
-import {getproductoPorNombre, crearProducto} from "../controller/productos.controller.js"
+import {getProductoPorNombre, crearProducto, actualizarProducto, eliminarProducto} from "../controller/productos.controller.js"
 
 const router = express.Router();
 
@@ -9,8 +9,10 @@ router.get("/", async (req,res)=>{
     return res.json(productos);
 });
 
-router.get("/:nombre", getproductoPorNombre);
+router.get("/:nombre", getProductoPorNombre);
 router.post("/", crearProducto);
+router.put("/:nombre", actualizarProducto);
+router.delete("/:nombre", eliminarProducto);    
 
 
 export default router;
