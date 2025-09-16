@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
  import ClientesRouters from "./routers/ClientesRouters.js";
 // import  EmpresasRouters from "./routers/EmpresasRouters.js";
-// import  ProductoRouters  from "./routers/ProductoRouters.js";
+import  ProductoRouters  from "./routers/ProductoRouters.js";
 // import ServiciosRouters from "./routers/ServiciosRouters.js";
 // import vendedorRouters from "./routers/vendedorRouters.js";
 
@@ -18,6 +18,7 @@ const PORT = 4200; // Crear el puerto
 app.use(express.json()); // Middleware para parsear JSON
 
 app.use("/Clientes", ClientesRouters);
+app.use("/productos", ProductoRouters);
 
 
 // inicial el Servidor 
