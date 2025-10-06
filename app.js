@@ -1,6 +1,12 @@
+import 'dotenv/config';
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
+import helmet from "helmet";
+import cors from "cors";
+import morgan from "morgan";
+import rateLimit from "express-rate-limit";
+import authRoutes from "./routers/auth.Routes.js";
+//
  import ClientesRouters from "./routers/ClientesRouters.js";
 // import  EmpresasRouters from "./routers/EmpresasRouters.js";
 import  ProductoRouters  from "./routers/ProductoRouters.js";
@@ -15,8 +21,14 @@ const app = express(); // Crear la instancia de Express
 
 const PORT = 4200; // Crear el puerto 
 
+app.use(helmet());
+app.use(cors({ origin: true, credentials: true }));
+app.use(morgan('dev'));
 app.use(express.json()); // Middleware para parsear JSON
 
+app.use('/auth/login', rateLimit({ windowMs: 15 * 60 * 1000, max: 20 })); // Limitar a 20 intentos cada 15 minutos
+
+app.use('/auth', authRoutes);
 app.use("/Clientes", ClientesRouters);
 app.use("/productos", ProductoRouters);
 
